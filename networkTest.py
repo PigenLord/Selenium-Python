@@ -3,6 +3,13 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+
+
+def output_on_start(**kwargs): 
+    print("STARTED ", kwargs) 
+def output_on_end(**kwargs): 
+    print("Finished ", kwargs) 
+
  
 #defining the chrome options
 options = webdriver.ChromeOptions()
@@ -32,7 +39,8 @@ tab.call_method("Network.emulateNetworkCondition",
                 uploadThroughput=31250, 
                 connectionType="cellular3g")
 
-tab.s
+tab.set_listener("Network.requestWillBeSent", output_on_start)
+tab.set_listener("Network.responseReceived", output_on_end)
 
 start = time.time()
 driver.get("https://fox.com")
