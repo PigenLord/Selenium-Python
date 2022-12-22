@@ -39,6 +39,8 @@ tab.call_method("Network.emulateNetworkCondition",
                 uploadThroughput=31250, 
                 connectionType="cellular3g")
 
+
+tab.set_listener("Network.enable", _timeout)
 tab.set_listener("Network.requestWillBeSent", output_on_start)
 tab.set_listener("Network.responseReceived", output_on_end)
 
